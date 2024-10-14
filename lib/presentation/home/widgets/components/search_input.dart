@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SearchInput extends StatefulWidget {
   final Function(String) onSearch;
@@ -26,7 +27,7 @@ class _SearchInputState extends State<SearchInput> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(18.0),
+      padding: EdgeInsets.all(18.w),
       child: TextField(
         controller: _controller,
         onChanged: (value) {
@@ -35,15 +36,21 @@ class _SearchInputState extends State<SearchInput> {
         decoration: InputDecoration(
           hintText: 'Search a project',
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: Colors.grey.shade400, width: 2),
+            borderRadius: BorderRadius.circular(12.r),
+            borderSide: BorderSide(
+              color: Colors.grey.shade400,
+              width: 2.w,
+            ),
           ),
           alignLabelWithHint: true,
           suffixIconColor: Colors.white,
           suffixIcon: _controller.text.isNotEmpty
               ? IconButton(
                   color: Colors.black,
-                  icon: const Icon(Icons.clear),
+                  icon: Icon(
+                    Icons.clear,
+                    size: 24.sp,
+                  ),
                   onPressed: () {
                     setState(() {
                       _controller.clear();
@@ -52,18 +59,23 @@ class _SearchInputState extends State<SearchInput> {
                   },
                 )
               : Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8.w),
                   child: Container(
-                      padding: const EdgeInsets.all(4),
-                      decoration: BoxDecoration(
-                        color: Theme.of(context)
-                            .tabBarTheme
-                            .labelColor, 
-                        borderRadius:
-                            BorderRadius.circular(12), 
-                      ),
-                      child: const Icon(Icons.search)),
-                ), 
+                    padding: EdgeInsets.all(4.w),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).tabBarTheme.labelColor,
+                      borderRadius: BorderRadius.circular(12.r),
+                    ),
+                    child: Icon(
+                      Icons.search,
+                      size: 24.sp,
+                    ),
+                  ),
+                ),
+        ),
+        style: TextStyle(
+          fontFamily: 'Inter',
+          fontSize: 16.sp,
         ),
       ),
     );
